@@ -10,12 +10,13 @@ public class NumberCubeGenerator : MonoBehaviour
      public float fontSize = 8f; // Font size for input numbers
     private void Start()
     {
-        inputField.onEndEdit.AddListener(GenerateCubes);
+        //inputField.onEndEdit.AddListener(GenerateCubes);
     }
 
-public void GenerateCubes(string input)
+public void GenerateCubes( )
 {
-    string[] numbers = input.Split(',');
+    string Nos=inputField.text;
+    string[] numbers = Nos.Split(',');
 
     Debug.Log("Number of elements in numbers array: " + numbers.Length); // Debug print
 

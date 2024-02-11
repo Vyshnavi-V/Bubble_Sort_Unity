@@ -286,7 +286,7 @@ MonoBehaviour:
       - m_Target: {fileID: 526129808}
         m_TargetAssemblyTypeName: NumberCubeGenerator, Assembly-CSharp
         m_MethodName: GenerateCubes
-        m_Mode: 5
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -375,7 +375,6 @@ GameObject:
   m_Component:
   - component: {fileID: 526129809}
   - component: {fileID: 526129808}
-  - component: {fileID: 526129810}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
@@ -417,23 +416,6 @@ Transform:
   - {fileID: 2049316949}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &526129810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 526129807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e6613f76690f39419b2bd49ea38b1e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputField: {fileID: 984021085}
-  cubePrefab: {fileID: 8017119010515784519, guid: 625e300772affca4394f5021e4926592, type: 3}
-  spacing: 1
-  textColor: {r: 1, g: 1, b: 1, a: 1}
-  fontSize: 24
 --- !u!1 &533574832
 GameObject:
   m_ObjectHideFlags: 0
