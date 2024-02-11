@@ -7,7 +7,7 @@ public class NumberCubeGenerator : MonoBehaviour
     public GameObject cubePrefab; // Reference to the cube prefab
     public float spacing = 0.5f; // Spacing between cubes
     public Color textColor = Color.white; 
-     public float fontSize = 8f; // Font size for input numbers
+     public float fontSize = 1f; // Font size for input numbers
     private void Start()
     {
         //inputField.onEndEdit.AddListener(GenerateCubes);
@@ -107,7 +107,7 @@ public class NumberCubeGenerator : MonoBehaviour
 
                 // Set font size based on cube size
                 float cubeSize = 24.2f; // Adjust this value based on your cube size
-                float fontSizeMultiplier = 0.4f; // Adjust this multiplier as needed
+                float fontSizeMultiplier = 0.05f; // Adjust this multiplier as needed
                 textMesh.fontSize = Mathf.RoundToInt(cubeSize * fontSizeMultiplier); 
             }
             else
