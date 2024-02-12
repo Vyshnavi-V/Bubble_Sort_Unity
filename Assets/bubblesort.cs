@@ -110,7 +110,13 @@ public class CubeGenerator : MonoBehaviour
     {
         paused = false;
     }
-
+    public void ReplaySorting()
+    {
+        StopAllCoroutines(); // Stop any ongoing sorting coroutine
+        sortingInProgress = false;
+        paused = false;
+        GenerateCubes(); // Regenerate cubes and start sorting again
+    }
     private IEnumerator BubbleSortCoroutine()
     {
         yield return new WaitForSeconds(sortingDelay);
