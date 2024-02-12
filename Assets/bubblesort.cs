@@ -8,6 +8,7 @@ public class CubeGenerator : MonoBehaviour
     public TMP_InputField inputField;
     public float spacing = 2f;
     public Color textColor = Color.white;
+    public Color comparisonColor = Color.yellow; // Color for cubes being compared
     public float sortingDelay = 1f; // Delay before starting the sorting process
 
     private GameObject[] cubes;
@@ -109,17 +110,31 @@ public class CubeGenerator : MonoBehaviour
             swapped = false;
             for (int i = 1; i < n; i++)
             {
+                // Change color of cubes being compared
+                cubes[i].GetComponentInChildren<TextMeshProUGUI>().color = comparisonColor;
+                cubes[i - 1].GetComponentInChildren<TextMeshProUGUI>().color = comparisonColor;
+
                 // Compare adjacent cubes and swap if necessary
                 int currentValue = int.Parse(cubes[i].GetComponentInChildren<TextMeshProUGUI>().text);
                 int previousValue = int.Parse(cubes[i - 1].GetComponentInChildren<TextMeshProUGUI>().text);
 
                 if (currentValue < previousValue)
                 {
-                    // Swap cubes
+                    // Lift and swap cubes
                     Vector3 tempPosition = cubes[i].transform.position;
-                    cubes[i].transform.position = cubes[i - 1].transform.position;
-                    cubes[i - 1].transform.position = tempPosition;
+                    Vector3 newPosition = cubes[i - 1].transform.position;
+                    newPosition.y += 1f; // Lift the cube
 
+                    float swapSpeed = 10f; // Adjust the speed as needed
+                    while (cubes[i].transform.position != newPosition)
+                    {
+                        cubes[i].transform.position = Vector3.MoveTowards(cubes[i].transform.position, newPosition, Time.deltaTime * swapSpeed);
+                        cubes[i - 1].transform.position = Vector3.MoveTowards(cubes[i - 1].transform.position, tempPosition, Time.deltaTime * swapSpeed);
+                        yield return null;
+                    }
+
+
+                    // Swap cube references
                     GameObject tempCube = cubes[i];
                     cubes[i] = cubes[i - 1];
                     cubes[i - 1] = tempCube;
@@ -127,7 +142,11 @@ public class CubeGenerator : MonoBehaviour
                     swapped = true;
                 }
 
-                yield return new WaitForSeconds(1f); // Adjust the delay as needed for visualization
+                // Reset color after comparison
+                cubes[i].GetComponentInChildren<TextMeshProUGUI>().color = textColor;
+                cubes[i - 1].GetComponentInChildren<TextMeshProUGUI>().color = textColor;
+
+                yield return new WaitForSeconds(0.5f); // Adjust the delay as needed for visualization
             }
             n--;
         } while (swapped);
