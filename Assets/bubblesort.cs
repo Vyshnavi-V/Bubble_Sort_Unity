@@ -1,17 +1,22 @@
+using System.Collections;
 using UnityEngine;
 using TMPro;
 
-public class NumberCubeGenerator : MonoBehaviour
+public class CubeGenerator : MonoBehaviour
 {
-    public TMP_InputField inputField; // Reference to the TMP Input Field
-    public GameObject cubePrefab; // Reference to the cube prefab
-    public float spacing = 0.5f; // Spacing between cubes
+    public GameObject cubePrefab;
+    public TMP_InputField inputField;
+    public float spacing = 2f;
     public Color textColor = Color.white;
-    public Color swapColor = Color.green; // Color to indicate swapping
-    public float fontSize = 1f; // Font size for input numbers
+    public float sortingDelay = 1f; // Delay before starting the sorting process
 
-    private GameObject[] cubes; // Array to store references to the generated cubes
-    private bool sortingInProgress = false; // Flag to track if sorting is in progress
+    private GameObject[] cubes;
+    private bool sortingInProgress = false;
+
+    private void Start()
+    {
+        // You can add a listener to the submit button or call GenerateCubes() from elsewhere in your code.
+    }
 
     public void GenerateCubes()
     {
@@ -89,51 +94,44 @@ public class NumberCubeGenerator : MonoBehaviour
             }
         }
 
-        // Start the bubble sort coroutine
-        StartCoroutine(BubbleSortCubes(numbers));
+        StartCoroutine(BubbleSortCoroutine());
     }
 
-    private System.Collections.IEnumerator BubbleSortCubes(string[] numbers)
+    private IEnumerator BubbleSortCoroutine()
     {
-        for (int i = 0; i < numbers.Length - 1; i++)
+        yield return new WaitForSeconds(sortingDelay);
+
+        int n = cubes.Length;
+        bool swapped;
+
+        do
         {
-            for (int j = 0; j < numbers.Length - i - 1; j++)
+            swapped = false;
+            for (int i = 1; i < n; i++)
             {
-                float currentNumber, nextNumber;
-                if (float.TryParse(numbers[j], out currentNumber) &&
-                    float.TryParse(numbers[j + 1], out nextNumber))
+                // Compare adjacent cubes and swap if necessary
+                int currentValue = int.Parse(cubes[i].GetComponentInChildren<TextMeshProUGUI>().text);
+                int previousValue = int.Parse(cubes[i - 1].GetComponentInChildren<TextMeshProUGUI>().text);
+
+                if (currentValue < previousValue)
                 {
-                    if (currentNumber > nextNumber)
-                    {
-                        // Swap positions of cubes
-                        Vector3 tempPosition = cubes[j].transform.position;
-                        cubes[j].transform.position = cubes[j + 1].transform.position;
-                        cubes[j + 1].transform.position = tempPosition;
+                    // Swap cubes
+                    Vector3 tempPosition = cubes[i].transform.position;
+                    cubes[i].transform.position = cubes[i - 1].transform.position;
+                    cubes[i - 1].transform.position = tempPosition;
 
-                        // Swap references in the cubes array
-                        GameObject tempCube = cubes[j];
-                        cubes[j] = cubes[j + 1];
-                        cubes[j + 1] = tempCube;
+                    GameObject tempCube = cubes[i];
+                    cubes[i] = cubes[i - 1];
+                    cubes[i - 1] = tempCube;
 
-                        // Change color of swapped cubes
-                        Renderer renderer1 = cubes[j].GetComponent<Renderer>();
-                        Renderer renderer2 = cubes[j + 1].GetComponent<Renderer>();
-                        if (renderer1 != null && renderer2 != null)
-                        {
-                            renderer1.material.color = swapColor;
-                            renderer2.material.color = swapColor;
-                        }
-                        else
-                        {
-                            Debug.LogError("Renderer component not found in one of the cubes.");
-                        }
-
-                        yield return new WaitForSeconds(0.5f); // Wait for a short duration to visualize the swap
-                    }
+                    swapped = true;
                 }
-            }
-        }
 
-        sortingInProgress = false; // Set flag to indicate sorting is complete
+                yield return new WaitForSeconds(1f); // Adjust the delay as needed for visualization
+            }
+            n--;
+        } while (swapped);
+
+        sortingInProgress = false; // Sorting is complete
     }
 }
