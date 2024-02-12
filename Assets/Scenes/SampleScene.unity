@@ -235,7 +235,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -504, y: -49}
+  m_AnchoredPosition: {x: -2, y: -120}
   m_SizeDelta: {x: 46.7, y: 44.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &195634889
@@ -281,7 +281,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 195634890}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 526129808}
+        m_TargetAssemblyTypeName: CubeGenerator, Assembly-CSharp
+        m_MethodName: PauseSorting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &195634890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -504,7 +516,6 @@ Transform:
   m_Children:
   - {fileID: 2049316949}
   - {fileID: 6310323117595094172}
-  - {fileID: 1841938424}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &533574832
@@ -804,7 +815,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -565.8, y: -50.2}
+  m_AnchoredPosition: {x: -63.799988, y: -121.2}
   m_SizeDelta: {x: 46.7, y: 44.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &649320553
@@ -1755,7 +1766,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -441, y: -49.6}
+  m_AnchoredPosition: {x: 61, y: -120.600006}
   m_SizeDelta: {x: 46.7, y: 44.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1719934579
@@ -1801,7 +1812,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1719934580}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 526129808}
+        m_TargetAssemblyTypeName: CubeGenerator, Assembly-CSharp
+        m_MethodName: ResumeSorting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1719934580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1853,7 +1876,7 @@ GameObject:
   - component: {fileID: 1841938426}
   - component: {fileID: 1841938425}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: ButtonCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1866,21 +1889,21 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1841938423}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 195634888}
   - {fileID: 1719934578}
   - {fileID: 649320552}
-  m_Father: {fileID: 526129809}
+  m_Father: {fileID: 2049316949}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 205.80002, y: 188.6}
+  m_SizeDelta: {x: 411.60004, y: 377.2}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1841938425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1976,6 +1999,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 146556360}
+  - {fileID: 1841938424}
   m_Father: {fileID: 526129809}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

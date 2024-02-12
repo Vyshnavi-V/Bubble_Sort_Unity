@@ -1,6 +1,7 @@
-using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class CubeGenerator : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class CubeGenerator : MonoBehaviour
 
     private GameObject[] cubes;
     private bool sortingInProgress = false;
+    private bool paused = false;
 
     private void Start()
     {
@@ -99,6 +101,16 @@ public class CubeGenerator : MonoBehaviour
         StartCoroutine(BubbleSortCoroutine());
     }
 
+    public void PauseSorting()
+    {
+        paused = true;
+    }
+
+    public void ResumeSorting()
+    {
+        paused = false;
+    }
+
     private IEnumerator BubbleSortCoroutine()
     {
         yield return new WaitForSeconds(sortingDelay);
@@ -145,6 +157,11 @@ public class CubeGenerator : MonoBehaviour
                 // Reset color after comparison
                 cubes[i].GetComponentInChildren<TextMeshProUGUI>().color = textColor;
                 cubes[i - 1].GetComponentInChildren<TextMeshProUGUI>().color = textColor;
+
+                if (paused)
+                {
+                    yield return new WaitWhile(() => paused == true); // Pause the sorting process
+                }
 
                 yield return new WaitForSeconds(0.5f); // Adjust the delay as needed for visualization
             }
