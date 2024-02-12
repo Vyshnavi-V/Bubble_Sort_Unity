@@ -10,6 +10,7 @@ public class CubeGenerator : MonoBehaviour
     public Color textColor = Color.white;
     public Color comparisonColor = Color.yellow; // Color for cubes being compared
     public float sortingDelay = 1f; // Delay before starting the sorting process
+    public float swapSpeed = 12f;
 
     private GameObject[] cubes;
     private bool sortingInProgress = false;
@@ -125,7 +126,6 @@ public class CubeGenerator : MonoBehaviour
                     Vector3 newPosition = cubes[i - 1].transform.position;
                     newPosition.y += 1f; // Lift the cube
 
-                    float swapSpeed = 10f; // Adjust the speed as needed
                     while (cubes[i].transform.position != newPosition)
                     {
                         cubes[i].transform.position = Vector3.MoveTowards(cubes[i].transform.position, newPosition, Time.deltaTime * swapSpeed);
