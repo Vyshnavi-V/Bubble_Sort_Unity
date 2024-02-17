@@ -496,6 +496,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 6488954755636091769, guid: 625e300772affca4394f5021e4926592, type: 3}
   inputField: {fileID: 984021085}
+  inputCanvas: {fileID: 2049316948}
+  mainCamera: {fileID: 963194227}
   spacing: 16
   textColor: {r: 1, g: 1, b: 1, a: 1}
   comparisonColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -514,6 +516,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1841938424}
   - {fileID: 2049316949}
   - {fileID: 6310323117595094172}
   m_Father: {fileID: 0}
@@ -1901,21 +1904,21 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1841938423}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 195634888}
   - {fileID: 1719934578}
   - {fileID: 649320552}
-  m_Father: {fileID: 2049316949}
+  m_Father: {fileID: 526129809}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 205.80002, y: 188.6}
-  m_SizeDelta: {x: 411.60004, y: 377.2}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!114 &1841938425
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2011,7 +2014,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 146556360}
-  - {fileID: 1841938424}
   m_Father: {fileID: 526129809}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

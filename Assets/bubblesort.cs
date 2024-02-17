@@ -7,6 +7,8 @@ public class CubeGenerator : MonoBehaviour
 {
     public GameObject cubePrefab;
     public TMP_InputField inputField;
+    public GameObject inputCanvas;
+    public Camera mainCamera;
     public float spacing = 2f;
     public Color textColor = Color.white;
     public Color comparisonColor = Color.yellow; // Color for cubes being compared
@@ -99,7 +101,34 @@ public class CubeGenerator : MonoBehaviour
         }
 
         StartCoroutine(BubbleSortCoroutine());
+
+        // Focus camera on generated cubes
+        FocusCameraOnCubes();
+
+        // Hide input canvas
+        inputCanvas.SetActive(false);
     }
+
+  private void FocusCameraOnCubes()
+{
+    if (cubes.Length > 0 && mainCamera != null)
+    {
+        // Calculate the bounds of all cubes
+        Bounds bounds = new Bounds(cubes[0].transform.position, Vector3.zero);
+        foreach (GameObject cube in cubes)
+        {
+            bounds.Encapsulate(cube.GetComponent<Renderer>().bounds);
+        }
+
+        // Calculate the camera distance based on the bounds size
+        float cameraDistance = bounds.size.magnitude / Mathf.Tan(mainCamera.fieldOfView * 0.5f * Mathf.Deg2Rad);
+
+        // Set camera position and rotation
+        mainCamera.transform.position = bounds.center - mainCamera.transform.forward * cameraDistance;
+        mainCamera.transform.LookAt(bounds.center);
+    }
+}
+
 
     public void PauseSorting()
     {
@@ -110,6 +139,7 @@ public class CubeGenerator : MonoBehaviour
     {
         paused = false;
     }
+
     public void ReplaySorting()
     {
         StopAllCoroutines(); // Stop any ongoing sorting coroutine
@@ -117,6 +147,7 @@ public class CubeGenerator : MonoBehaviour
         paused = false;
         GenerateCubes(); // Regenerate cubes and start sorting again
     }
+
     private IEnumerator BubbleSortCoroutine()
     {
         yield return new WaitForSeconds(sortingDelay);
@@ -150,7 +181,6 @@ public class CubeGenerator : MonoBehaviour
                         cubes[i - 1].transform.position = Vector3.MoveTowards(cubes[i - 1].transform.position, tempPosition, Time.deltaTime * swapSpeed);
                         yield return null;
                     }
-
 
                     // Swap cube references
                     GameObject tempCube = cubes[i];

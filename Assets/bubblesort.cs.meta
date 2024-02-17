@@ -3,7 +3,11 @@ guid: 2e6613f76690f39419b2bd49ea38b1e2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - cubePrefab: {fileID: 6488954755636091769, guid: 625e300772affca4394f5021e4926592, type: 3}
+  - inputField: {instanceID: 0}
+  - inputCanvas: {instanceID: 0}
+  - mainCamera: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
